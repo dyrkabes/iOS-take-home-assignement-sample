@@ -36,22 +36,7 @@ final class WeatherRequester: WeatherRequesting {
             let weatherDataDTO = try decoder.decode(WeatherDataDTO.self, from: data)
             return .success(WeatherConverter.weatherData(from: weatherDataDTO))
         } catch {
-            print(error)
-            return .failure(WeatherRequester.convert(error: error))
-        }
-    }
-
-    private static func convert(error: Error) -> NetworkError {
-        guard let urlError = error as? URLError else {
-            return .network
-        }
-        switch urlError.code {
-        case .notConnectedToInternet:
-            return .noInternet
-        case .timedOut:
-            return .timedOut
-        default:
-            return .network
+            return .failure(ErrorConverter.convert(error: error))
         }
     }
 }

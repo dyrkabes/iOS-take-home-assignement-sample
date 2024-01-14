@@ -10,10 +10,14 @@ import Foundation
 
 final class SpyHttpRequester: HttpRequesting {
     private(set) var invokedDataCounter = 0
+    var stubbedErrorToThrow: Error?
     var stubbedResult: (Data, URLResponse)!
 
     func data(for request: URLRequest) async throws -> (Data, URLResponse) {
         invokedDataCounter += 1
+        if let stubbedErrorToThrow {
+            throw stubbedErrorToThrow
+        }
         return stubbedResult
     }
 }

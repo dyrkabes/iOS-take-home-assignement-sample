@@ -35,6 +35,8 @@ final class NetworkRequesterTest: XCTestCase {
         XCTAssertTrue(httpRequester.invokedDataCounter == 1, "Requst was not executed")
     }
 
+    // MARK: - Success -
+
     func testRequestWeatherDataSuccess() async {
         // given
         httpRequester.stubbedResult = (JsonLoader.json(from: "WeatherResponse")!, URLResponse())
@@ -47,7 +49,9 @@ final class NetworkRequesterTest: XCTestCase {
         XCTAssertTrue(weatherData.type == .rain, "Weather type is incorrect")
     }
 
-    func testRequestWeatherDataFailure() async {
+    // MARK: - Failure -
+
+    func testRequestWeatherDataFailureWhenDataIsEmpty() async {
         // given
         httpRequester.stubbedResult = (Data(), URLResponse())
 
@@ -56,6 +60,51 @@ final class NetworkRequesterTest: XCTestCase {
 
         // then
         guard case .failure(.network) = weatherDataResult else {
+            XCTFail("Incorrect result: \(weatherDataResult)")
+            return
+        }
+        // If we are here test has succeeded
+    }
+
+    func testRequestWeatherDataFailureWhenDataCannotBeParsed() async {
+        // given
+        httpRequester.stubbedResult = (#"{"weathercode": "wmo code", "temperature": 2.0}"#.data(using: .utf8)!, URLResponse())
+
+        // when
+        let weatherDataResult = await sut.requestWeatherData()
+
+        // then
+        guard case .failure(.network) = weatherDataResult else {
+            XCTFail("Incorrect result: \(weatherDataResult)")
+            return
+        }
+        // If we are here test has succeeded
+    }
+
+    func testRequestWeatherDataFailureNoInternet() async {
+        // given
+        httpRequester.stubbedErrorToThrow = URLError(.notConnectedToInternet)
+
+        // when
+        let weatherDataResult = await sut.requestWeatherData()
+
+        // then
+        guard case .failure(.noInternet) = weatherDataResult else {
+            XCTFail("Incorrect result: \(weatherDataResult)")
+            return
+        }
+        // If we are here test has succeeded
+    }
+
+    func testRequestWeatherDataFailureTimedOut() async {
+        // given
+        httpRequester.stubbedErrorToThrow = URLError(.timedOut)
+
+        // when
+        let weatherDataResult = await sut.requestWeatherData()
+
+        // then
+        guard case .failure(.timedOut) = weatherDataResult else {
             XCTFail("Incorrect result: \(weatherDataResult)")
             return
         }

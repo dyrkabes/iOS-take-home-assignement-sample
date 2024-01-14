@@ -20,6 +20,7 @@
 		E96641452B533F1100565B67 /* HttpRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96641442B533F1100565B67 /* HttpRequester.swift */; };
 		E96641482B533F7B00565B67 /* SpyHttpRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96641472B533F7B00565B67 /* SpyHttpRequester.swift */; };
 		E966414C2B53502800565B67 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966414B2B53502800565B67 /* JsonLoader.swift */; };
+		E966414E2B54462100565B67 /* ErrorConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966414D2B54462100565B67 /* ErrorConverter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		E96641442B533F1100565B67 /* HttpRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequester.swift; sourceTree = "<group>"; };
 		E96641472B533F7B00565B67 /* SpyHttpRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyHttpRequester.swift; sourceTree = "<group>"; };
 		E966414B2B53502800565B67 /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
+		E966414D2B54462100565B67 /* ErrorConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorConverter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 		E92E6A782A3BB33300714C2D /* API */ = {
 			isa = PBXGroup;
 			children = (
+				E966414D2B54462100565B67 /* ErrorConverter.swift */,
 				E96641412B52E4EC00565B67 /* WeatherConverter.swift */,
 				E92E6A7E2A3BC05C00714C2D /* WeatherDataDTO.swift */,
 				E92E6A792A3BB37400714C2D /* WeatherRequester.swift */,
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E92E6A502A3BB23E00714C2D /* ContentView.swift in Sources */,
+				E966414E2B54462100565B67 /* ErrorConverter.swift in Sources */,
 				E96641422B52E4EC00565B67 /* WeatherConverter.swift in Sources */,
 				E92E6A7F2A3BC05C00714C2D /* WeatherDataDTO.swift in Sources */,
 				E92E6A7A2A3BB37400714C2D /* WeatherRequester.swift in Sources */,
