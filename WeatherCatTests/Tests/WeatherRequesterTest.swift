@@ -1,5 +1,5 @@
 //
-//  NetworkRequesterTest.swift
+//  WeatherRequesterTest.swift
 //  WeatherCatTests
 //
 //  Created by Pavel Stepanov on 13.01.24.
@@ -9,7 +9,7 @@ import XCTest
 
 @testable import WeatherCat
 
-final class NetworkRequesterTest: XCTestCase {
+final class WeatherRequesterTest: XCTestCase {
     // MARK: - Dependencies -
 
     private var sut: WeatherRequester!
@@ -29,7 +29,7 @@ final class NetworkRequesterTest: XCTestCase {
         httpRequester.stubbedResult = (Data(), URLResponse())
 
         // when
-        _ = await sut.requestWeatherData()
+        _ = await sut.requestWeatherData(latitude: 0.0, longitude: 0.0)
 
         // then
         XCTAssertTrue(httpRequester.invokedDataCounter == 1, "Requst was not executed")
@@ -42,7 +42,7 @@ final class NetworkRequesterTest: XCTestCase {
         httpRequester.stubbedResult = (JsonLoader.json(from: "WeatherResponse")!, URLResponse())
 
         // when
-        let weatherData = try! await sut.requestWeatherData().get()
+        let weatherData = try! await sut.requestWeatherData(latitude: 0.0, longitude: 0.0).get()
 
         // then
         XCTAssertTrue(weatherData.temperature == 2.0, "Temperature is incorrect")
@@ -56,7 +56,7 @@ final class NetworkRequesterTest: XCTestCase {
         httpRequester.stubbedResult = (Data(), URLResponse())
 
         // when
-        let weatherDataResult = await sut.requestWeatherData()
+        let weatherDataResult = await sut.requestWeatherData(latitude: 0.0, longitude: 0.0)
 
         // then
         guard case .failure(.network) = weatherDataResult else {
@@ -71,7 +71,7 @@ final class NetworkRequesterTest: XCTestCase {
         httpRequester.stubbedResult = (#"{"weathercode": "wmo code", "temperature": 2.0}"#.data(using: .utf8)!, URLResponse())
 
         // when
-        let weatherDataResult = await sut.requestWeatherData()
+        let weatherDataResult = await sut.requestWeatherData(latitude: 0.0, longitude: 0.0)
 
         // then
         guard case .failure(.network) = weatherDataResult else {
@@ -86,7 +86,7 @@ final class NetworkRequesterTest: XCTestCase {
         httpRequester.stubbedErrorToThrow = URLError(.notConnectedToInternet)
 
         // when
-        let weatherDataResult = await sut.requestWeatherData()
+        let weatherDataResult = await sut.requestWeatherData(latitude: 0.0, longitude: 0.0)
 
         // then
         guard case .failure(.noInternet) = weatherDataResult else {
@@ -101,7 +101,7 @@ final class NetworkRequesterTest: XCTestCase {
         httpRequester.stubbedErrorToThrow = URLError(.timedOut)
 
         // when
-        let weatherDataResult = await sut.requestWeatherData()
+        let weatherDataResult = await sut.requestWeatherData(latitude: 0.0, longitude: 0.0)
 
         // then
         guard case .failure(.timedOut) = weatherDataResult else {

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E91460F02A3E5064000A6433 /* WeatherResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = E91460ED2A3E5064000A6433 /* WeatherResponse.json */; };
-		E91460F22A3E5064000A6433 /* NetworkRequesterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91460EF2A3E5064000A6433 /* NetworkRequesterTest.swift */; };
+		E91460F22A3E5064000A6433 /* WeatherRequesterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91460EF2A3E5064000A6433 /* WeatherRequesterTest.swift */; };
 		E92E6A4E2A3BB23E00714C2D /* WeatherCatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92E6A4D2A3BB23E00714C2D /* WeatherCatApp.swift */; };
 		E92E6A502A3BB23E00714C2D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92E6A4F2A3BB23E00714C2D /* ContentView.swift */; };
 		E92E6A522A3BB23F00714C2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E92E6A512A3BB23F00714C2D /* Assets.xcassets */; };
@@ -21,6 +21,7 @@
 		E96641482B533F7B00565B67 /* SpyHttpRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96641472B533F7B00565B67 /* SpyHttpRequester.swift */; };
 		E966414C2B53502800565B67 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966414B2B53502800565B67 /* JsonLoader.swift */; };
 		E966414E2B54462100565B67 /* ErrorConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966414D2B54462100565B67 /* ErrorConverter.swift */; };
+		E9DA090B2B55C27C002DBCD0 /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DA090A2B55C27C002DBCD0 /* APIs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +36,7 @@
 
 /* Begin PBXFileReference section */
 		E91460ED2A3E5064000A6433 /* WeatherResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = WeatherResponse.json; sourceTree = "<group>"; };
-		E91460EF2A3E5064000A6433 /* NetworkRequesterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequesterTest.swift; sourceTree = "<group>"; };
+		E91460EF2A3E5064000A6433 /* WeatherRequesterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRequesterTest.swift; sourceTree = "<group>"; };
 		E92E6A4A2A3BB23E00714C2D /* WeatherCat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherCat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E92E6A4D2A3BB23E00714C2D /* WeatherCatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCatApp.swift; sourceTree = "<group>"; };
 		E92E6A4F2A3BB23E00714C2D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,6 +52,7 @@
 		E96641472B533F7B00565B67 /* SpyHttpRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyHttpRequester.swift; sourceTree = "<group>"; };
 		E966414B2B53502800565B67 /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
 		E966414D2B54462100565B67 /* ErrorConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorConverter.swift; sourceTree = "<group>"; };
+		E9DA090A2B55C27C002DBCD0 /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +98,7 @@
 				E92E6A4F2A3BB23E00714C2D /* ContentView.swift */,
 				E92E6A4D2A3BB23E00714C2D /* WeatherCatApp.swift */,
 				E92E6A512A3BB23F00714C2D /* Assets.xcassets */,
-				E92E6A782A3BB33300714C2D /* API */,
+				E92E6A782A3BB33300714C2D /* Network */,
 				E92E6A7B2A3BB74900714C2D /* Business */,
 				E92E6A542A3BB23F00714C2D /* Preview Content */,
 			);
@@ -121,16 +123,15 @@
 			path = WeatherCatTests;
 			sourceTree = "<group>";
 		};
-		E92E6A782A3BB33300714C2D /* API */ = {
+		E92E6A782A3BB33300714C2D /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				E966414D2B54462100565B67 /* ErrorConverter.swift */,
-				E96641412B52E4EC00565B67 /* WeatherConverter.swift */,
-				E92E6A7E2A3BC05C00714C2D /* WeatherDataDTO.swift */,
-				E92E6A792A3BB37400714C2D /* WeatherRequester.swift */,
+				E9DA09092B55C25E002DBCD0 /* APIs */,
 				E96641432B533F0300565B67 /* HttpRequester */,
+				E9DA09062B55C230002DBCD0 /* Weather */,
 			);
-			path = API;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		E92E6A7B2A3BB74900714C2D /* Business */ = {
@@ -169,9 +170,27 @@
 			isa = PBXGroup;
 			children = (
 				E91460ED2A3E5064000A6433 /* WeatherResponse.json */,
-				E91460EF2A3E5064000A6433 /* NetworkRequesterTest.swift */,
+				E91460EF2A3E5064000A6433 /* WeatherRequesterTest.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		E9DA09062B55C230002DBCD0 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				E96641412B52E4EC00565B67 /* WeatherConverter.swift */,
+				E92E6A7E2A3BC05C00714C2D /* WeatherDataDTO.swift */,
+				E92E6A792A3BB37400714C2D /* WeatherRequester.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		E9DA09092B55C25E002DBCD0 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				E9DA090A2B55C27C002DBCD0 /* APIs.swift */,
+			);
+			path = APIs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +301,7 @@
 				E92E6A7A2A3BB37400714C2D /* WeatherRequester.swift in Sources */,
 				E96641452B533F1100565B67 /* HttpRequester.swift in Sources */,
 				E92E6A7D2A3BB75200714C2D /* WeatherData.swift in Sources */,
+				E9DA090B2B55C27C002DBCD0 /* APIs.swift in Sources */,
 				E92E6A4E2A3BB23E00714C2D /* WeatherCatApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,7 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E91460F22A3E5064000A6433 /* NetworkRequesterTest.swift in Sources */,
+				E91460F22A3E5064000A6433 /* WeatherRequesterTest.swift in Sources */,
 				E966414C2B53502800565B67 /* JsonLoader.swift in Sources */,
 				E96641482B533F7B00565B67 /* SpyHttpRequester.swift in Sources */,
 			);

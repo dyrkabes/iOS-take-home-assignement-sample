@@ -12,7 +12,7 @@ enum NetworkError: Error {
 }
 
 protocol WeatherRequesting {
-    func requestWeatherData() async -> Result<WeatherData, NetworkError>
+    func requestWeatherData(latitude: Double, longitude: Double) async -> Result<WeatherData, NetworkError>
 }
 
 final class WeatherRequester: WeatherRequesting {
@@ -28,10 +28,9 @@ final class WeatherRequester: WeatherRequesting {
         self.httpRequester = httpRequester
     }
 
-    func requestWeatherData() async -> Result<WeatherData, NetworkError> {
+    func requestWeatherData(latitude: Double, longitude: Double) async -> Result<WeatherData, NetworkError> {
         do {
-            let urlString = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true"
-            let request = URLRequest(url: .init(string: urlString)!)
+            let request = URLRequest(url: APIs.Weather.currentWeather(latitude: latitude, longitude: longitude).makeURL())
             let (data, _) = try await httpRequester.data(for: request)
             let weatherDataDTO = try decoder.decode(WeatherDataDTO.self, from: data)
             return .success(WeatherConverter.weatherData(from: weatherDataDTO))
