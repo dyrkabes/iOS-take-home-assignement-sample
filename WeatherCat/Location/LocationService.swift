@@ -2,59 +2,48 @@
 //  LocationService.swift
 //  WeatherCat
 //
-//  Created by Pavel Stepanov on 25.01.24.
+//  Created by Pavel Stepanov on 04.02.24.
 //
 
 import Combine
 import CoreLocation
+import Foundation
 
-protocol LocationServicing {
-    var currentLocation: AnyPublisher<LocationData, Never> { get }
-
-    func start()
-}
-
-final class LocationService: LocationServicing {
-    var currentLocation: AnyPublisher<LocationData, Never> {
+final class LocationService: NSObject, LocationServicing {
+    var currentLocation: AnyPublisher<DataState<Coordinate>, Never> {
         _currentLocation.eraseToAnyPublisher()
     }
-    private let _currentLocation = CurrentValueSubject<LocationData, Never>(Constants.locations[0])
+    private let _currentLocation = CurrentValueSubject<DataState<Coordinate>, Never>(.loading)
 
-    private let updateDelay: Duration
-    private var currentLocationIndex = 0
+    private var hasStarted = false
 
-    init(updateDelay: Duration = Constants.delay) {
-        self.updateDelay = updateDelay
-    }
+    private let locationManager = CLLocationManager()
 
     func start() {
-        Task {
-            while true {
-                try? await Task.sleep(for: updateDelay)
-
-                currentLocationIndex = (currentLocationIndex + 1) % Constants.locations.count
-                _currentLocation.send(Constants.locations[currentLocationIndex])
-            }
+        guard !hasStarted else {
+            return
         }
+        hasStarted = true
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+    }
+
+    func stop() {
+        hasStarted = false
+        locationManager.stopUpdatingLocation()
     }
 }
 
-private extension LocationService {
-    enum Constants {
-        static let locations = [
-            (53.619653, 10.079969),
-            (53.080917, 8.847533),
-            (52.378385, 9.794862),
-            (52.496385, 13.444041),
-            (53.866865, 10.739542),
-            (54.304540, 10.152741),
-            (54.797277, 9.491039),
-            (52.426412, 10.821392),
-            (53.542788, 8.613462),
-            (53.141598, 8.242565)
-        ]
-            .map(LocationData.init)
+extension LocationService: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else {
+            return
+        }
+        let coordinate = Coordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        _currentLocation.send(.loaded(data: coordinate))
+    }
 
-        static let delay = Duration.seconds(10)
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        _currentLocation.send(.error)
     }
 }
