@@ -13,7 +13,7 @@ final class WeatherRequesterTest: XCTestCase {
     // MARK: - Dependencies -
 
     private var sut: WeatherRequester!
-    private var httpRequester: SpyHttpRequester!
+    private var httpRequester: HttpRequesterSpy!
 
     // MARK: - Setup -
 

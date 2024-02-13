@@ -1,5 +1,5 @@
 //
-//  SpyHttpRequester.swift
+//  HttpRequesterSpy.swift
 //  WeatherCatTests
 //
 //  Created by Pavel Stepanov on 13.01.24.
@@ -8,7 +8,7 @@
 import Foundation
 @testable import WeatherCat
 
-final class SpyHttpRequester: HttpRequesting {
+final class HttpRequesterSpy: HttpRequesting {
     private(set) var invokedDataCounter = 0
     var stubbedErrorToThrow: Error?
     var stubbedResult: (Data, URLResponse)!

@@ -17,20 +17,24 @@ final class LocationService: NSObject, LocationServicing {
 
     private var hasStarted = false
 
-    private let locationManager = CLLocationManager()
+    private let locationProvider: LocationProviding
+
+    init(locationProvider: LocationProviding = CLLocationManager()) {
+        self.locationProvider = locationProvider
+    }
 
     func start() {
         guard !hasStarted else {
             return
         }
         hasStarted = true
-        locationManager.delegate = self
-        locationManager.startUpdatingLocation()
+        locationProvider.delegate = self
+        locationProvider.startUpdatingLocation()
     }
 
     func stop() {
         hasStarted = false
-        locationManager.stopUpdatingLocation()
+        locationProvider.stopUpdatingLocation()
     }
 }
 

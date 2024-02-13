@@ -19,7 +19,7 @@
 		E92E6A7F2A3BC05C00714C2D /* WeatherDataDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92E6A7E2A3BC05C00714C2D /* WeatherDataDTO.swift */; };
 		E96641422B52E4EC00565B67 /* WeatherConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96641412B52E4EC00565B67 /* WeatherConverter.swift */; };
 		E96641452B533F1100565B67 /* HttpRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96641442B533F1100565B67 /* HttpRequester.swift */; };
-		E96641482B533F7B00565B67 /* SpyHttpRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96641472B533F7B00565B67 /* SpyHttpRequester.swift */; };
+		E96641482B533F7B00565B67 /* HttpRequesterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96641472B533F7B00565B67 /* HttpRequesterSpy.swift */; };
 		E966414C2B53502800565B67 /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966414B2B53502800565B67 /* JsonLoader.swift */; };
 		E966414E2B54462100565B67 /* ErrorConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E966414D2B54462100565B67 /* ErrorConverter.swift */; };
 		E96C53592B6308C7005B7BB0 /* DemoLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96C53582B6308C7005B7BB0 /* DemoLocationService.swift */; };
@@ -28,6 +28,9 @@
 		E9BAEF4D2B6551150002722A /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BAEF4C2B6551150002722A /* Coordinate.swift */; };
 		E9DA090B2B55C27C002DBCD0 /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DA090A2B55C27C002DBCD0 /* APIs.swift */; };
 		E9DB597F2B7C15A800FDC37B /* DemoLocationServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DB597E2B7C15A800FDC37B /* DemoLocationServiceTest.swift */; };
+		E9DB59812B7C169300FDC37B /* LocationProviderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DB59802B7C169300FDC37B /* LocationProviderSpy.swift */; };
+		E9DB59832B7C174B00FDC37B /* LocationServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DB59822B7C174B00FDC37B /* LocationServiceTest.swift */; };
+		E9DB59852B7C17A600FDC37B /* LocationProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DB59842B7C17A600FDC37B /* LocationProviding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +59,7 @@
 		E92E6A7E2A3BC05C00714C2D /* WeatherDataDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataDTO.swift; sourceTree = "<group>"; };
 		E96641412B52E4EC00565B67 /* WeatherConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConverter.swift; sourceTree = "<group>"; };
 		E96641442B533F1100565B67 /* HttpRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequester.swift; sourceTree = "<group>"; };
-		E96641472B533F7B00565B67 /* SpyHttpRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyHttpRequester.swift; sourceTree = "<group>"; };
+		E96641472B533F7B00565B67 /* HttpRequesterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequesterSpy.swift; sourceTree = "<group>"; };
 		E966414B2B53502800565B67 /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
 		E966414D2B54462100565B67 /* ErrorConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorConverter.swift; sourceTree = "<group>"; };
 		E96C53582B6308C7005B7BB0 /* DemoLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoLocationService.swift; sourceTree = "<group>"; };
@@ -65,6 +68,9 @@
 		E9BAEF4C2B6551150002722A /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		E9DA090A2B55C27C002DBCD0 /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
 		E9DB597E2B7C15A800FDC37B /* DemoLocationServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoLocationServiceTest.swift; sourceTree = "<group>"; };
+		E9DB59802B7C169300FDC37B /* LocationProviderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviderSpy.swift; sourceTree = "<group>"; };
+		E9DB59822B7C174B00FDC37B /* LocationServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceTest.swift; sourceTree = "<group>"; };
+		E9DB59842B7C17A600FDC37B /* LocationProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,7 +174,8 @@
 		E96641462B533F6800565B67 /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
-				E96641472B533F7B00565B67 /* SpyHttpRequester.swift */,
+				E96641472B533F7B00565B67 /* HttpRequesterSpy.swift */,
+				E9DB59802B7C169300FDC37B /* LocationProviderSpy.swift */,
 			);
 			path = Stubs;
 			sourceTree = "<group>";
@@ -194,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				E96C53582B6308C7005B7BB0 /* DemoLocationService.swift */,
+				E9DB59842B7C17A600FDC37B /* LocationProviding.swift */,
 				E974003A2B70325000D648DA /* LocationService.swift */,
 				E974003C2B70338F00D648DA /* LocationServicing.swift */,
 			);
@@ -204,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				E9DB597E2B7C15A800FDC37B /* DemoLocationServiceTest.swift */,
+				E9DB59822B7C174B00FDC37B /* LocationServiceTest.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -341,6 +350,7 @@
 				E96C53592B6308C7005B7BB0 /* DemoLocationService.swift in Sources */,
 				E96641422B52E4EC00565B67 /* WeatherConverter.swift in Sources */,
 				E90325362B65AFBE00F82838 /* LocationState.swift in Sources */,
+				E9DB59852B7C17A600FDC37B /* LocationProviding.swift in Sources */,
 				E92E6A7F2A3BC05C00714C2D /* WeatherDataDTO.swift in Sources */,
 				E92E6A7A2A3BB37400714C2D /* WeatherRequester.swift in Sources */,
 				E96641452B533F1100565B67 /* HttpRequester.swift in Sources */,
@@ -358,8 +368,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E91460F22A3E5064000A6433 /* WeatherRequesterTest.swift in Sources */,
+				E9DB59812B7C169300FDC37B /* LocationProviderSpy.swift in Sources */,
 				E966414C2B53502800565B67 /* JsonLoader.swift in Sources */,
-				E96641482B533F7B00565B67 /* SpyHttpRequester.swift in Sources */,
+				E96641482B533F7B00565B67 /* HttpRequesterSpy.swift in Sources */,
+				E9DB59832B7C174B00FDC37B /* LocationServiceTest.swift in Sources */,
 				E9DB597F2B7C15A800FDC37B /* DemoLocationServiceTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
