@@ -10,10 +10,10 @@ import CoreLocation
 import Foundation
 
 final class LocationService: NSObject, LocationServicing {
-    var currentLocation: AnyPublisher<DataState<Coordinate>, Never> {
+    var currentLocation: AnyPublisher<LocationState, Never> {
         _currentLocation.eraseToAnyPublisher()
     }
-    private let _currentLocation = CurrentValueSubject<DataState<Coordinate>, Never>(.loading)
+    private let _currentLocation = CurrentValueSubject<LocationState, Never>(.loading)
 
     private var hasStarted = false
 
@@ -40,7 +40,7 @@ extension LocationService: CLLocationManagerDelegate {
             return
         }
         let coordinate = Coordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        _currentLocation.send(.loaded(data: coordinate))
+        _currentLocation.send(.loaded(coordinate: coordinate))
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

@@ -7,6 +7,7 @@
 
 import Combine
 import XCTest
+
 @testable import WeatherCat
 
 final class DemoLocationServiceTest: XCTestCase {
@@ -15,14 +16,14 @@ final class DemoLocationServiceTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        self.sut = .init()
+        sut = .init()
     }
 
     // MARK: - Initially -
 
     func testLocationStateInitiallyIsLoaded() {
         // given
-        var receivedLocationState: DataState<Coordinate>!
+        var receivedLocationState: LocationState!
         cancellable = sut.currentLocation.sink(receiveValue: { receivedLocationState = $0 })
 
         // when && then
@@ -37,7 +38,7 @@ final class DemoLocationServiceTest: XCTestCase {
 
     func testLocationStateOnStartIsLoaded() {
         // given
-        var receivedLocationState: DataState<Coordinate>!
+        var receivedLocationState: LocationState!
         cancellable = sut.currentLocation.sink(receiveValue: { receivedLocationState = $0 })
 
         // when
@@ -55,7 +56,7 @@ final class DemoLocationServiceTest: XCTestCase {
 
     func testStartDoesNotPublishAdditionalLocation() {
         // given
-        var receivedLocationStates = [DataState<Coordinate>]()
+        var receivedLocationStates = [LocationState]()
         cancellable = sut.currentLocation.sink(receiveValue: { receivedLocationStates.append($0) })
 
         // when
@@ -65,13 +66,13 @@ final class DemoLocationServiceTest: XCTestCase {
         XCTAssertEqual(receivedLocationStates.count, 1)
     }
 
-    // MARK: - Lazy Delay tests -
+    // MARK: - Delay tests -
 
     func testCurrentLocationIsChangedAfterDelayLazyApproach() {
         // given
         let expectation = XCTestExpectation(description: "Second location value should have been Publishd")
 
-        var receivedLocationState: DataState<Coordinate>!
+        var receivedLocationState: LocationState!
         cancellable = sut.currentLocation
             .dropFirst()
             .sink(receiveValue: {
@@ -98,7 +99,7 @@ final class DemoLocationServiceTest: XCTestCase {
         sut = .init(updateDelay: .milliseconds(10))
         let expectation = XCTestExpectation(description: "Second location value should have been Publishd")
 
-        var receivedLocationState: DataState<Coordinate>!
+        var receivedLocationState: LocationState!
         cancellable = sut.currentLocation
             .dropFirst()
             .sink(receiveValue: {
@@ -118,5 +119,26 @@ final class DemoLocationServiceTest: XCTestCase {
 
         let expectedCoordinate = Coordinate(latitude: 53.080917, longitude: 8.847533)
         XCTAssertEqual(coordinate, expectedCoordinate)
+    }
+
+    // MARK: - Stop -
+
+    func testLocationUpdatesAreStopped() {
+        // given
+        sut = .init(updateDelay: .milliseconds(10))
+        var receivedLocationStates = [LocationState]()
+        cancellable = sut.currentLocation
+            .dropFirst()
+            .sink(receiveValue: {
+                receivedLocationStates.append($0)
+            })
+        sut.start()
+
+        // when
+        sut.stop()
+        _ = XCTWaiter.wait(for: [expectation(description: "Wait for 2 seconds")], timeout: 2.0)
+
+        // then
+        XCTAssertEqual(receivedLocationStates.count, 0)
     }
 }

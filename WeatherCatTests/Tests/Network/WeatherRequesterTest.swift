@@ -18,7 +18,7 @@ final class WeatherRequesterTest: XCTestCase {
     // MARK: - Setup -
 
     override func setUp() {
-        self.httpRequester = .init()
+        httpRequester = .init()
         sut = .init(httpRequester: httpRequester)
     }
 

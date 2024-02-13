@@ -8,7 +8,7 @@
 import Combine
 
 protocol LocationServicing {
-    var currentLocation: AnyPublisher<DataState<Coordinate>, Never> { get }
+    var currentLocation: AnyPublisher<LocationState, Never> { get }
 
     func start()
     func stop()

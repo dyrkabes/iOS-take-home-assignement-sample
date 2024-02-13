@@ -26,8 +26,8 @@
 		E974003B2B70325000D648DA /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E974003A2B70325000D648DA /* LocationService.swift */; };
 		E974003D2B70338F00D648DA /* LocationServicing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E974003C2B70338F00D648DA /* LocationServicing.swift */; };
 		E9BAEF4D2B6551150002722A /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BAEF4C2B6551150002722A /* Coordinate.swift */; };
-		E9BAEF512B65926D0002722A /* LocationServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BAEF502B65926D0002722A /* LocationServiceTest.swift */; };
 		E9DA090B2B55C27C002DBCD0 /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DA090A2B55C27C002DBCD0 /* APIs.swift */; };
+		E9DB597F2B7C15A800FDC37B /* DemoLocationServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DB597E2B7C15A800FDC37B /* DemoLocationServiceTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,8 +63,8 @@
 		E974003A2B70325000D648DA /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		E974003C2B70338F00D648DA /* LocationServicing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServicing.swift; sourceTree = "<group>"; };
 		E9BAEF4C2B6551150002722A /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
-		E9BAEF502B65926D0002722A /* LocationServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceTest.swift; sourceTree = "<group>"; };
 		E9DA090A2B55C27C002DBCD0 /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
+		E9DB597E2B7C15A800FDC37B /* DemoLocationServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoLocationServiceTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,7 +203,7 @@
 		E9BAEF4E2B6592520002722A /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				E9BAEF502B65926D0002722A /* LocationServiceTest.swift */,
+				E9DB597E2B7C15A800FDC37B /* DemoLocationServiceTest.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -359,8 +359,8 @@
 			files = (
 				E91460F22A3E5064000A6433 /* WeatherRequesterTest.swift in Sources */,
 				E966414C2B53502800565B67 /* JsonLoader.swift in Sources */,
-				E9BAEF512B65926D0002722A /* LocationServiceTest.swift in Sources */,
 				E96641482B533F7B00565B67 /* SpyHttpRequester.swift in Sources */,
+				E9DB597F2B7C15A800FDC37B /* DemoLocationServiceTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

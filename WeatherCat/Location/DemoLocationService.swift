@@ -8,14 +8,15 @@
 import Combine
 
 final class DemoLocationService: LocationServicing {
-    var currentLocation: AnyPublisher<DataState<Coordinate>, Never> {
+    var currentLocation: AnyPublisher<LocationState, Never> {
         _currentLocation.eraseToAnyPublisher()
     }
-    private let _currentLocation = CurrentValueSubject<DataState<Coordinate>, Never>(.loaded(data: Constants.coordinates[0]))
+
+    private let _currentLocation = CurrentValueSubject<LocationState, Never>(.loaded(coordinate: Constants.coordinates[0]))
 
     private let updateDelay: Duration
     private var currentCoordinateIndex = 0
-    private var updateLocationTask: Task<(), Never>?
+    private var updateLocationTask: Task<Void, Never>?
 
     init(updateDelay: Duration = Constants.delay) {
         self.updateDelay = updateDelay
@@ -40,7 +41,7 @@ final class DemoLocationService: LocationServicing {
     private func updateLocationIfNotCancelled() throws {
         try Task.checkCancellation()
         currentCoordinateIndex = (currentCoordinateIndex + 1) % Constants.coordinates.count
-        _currentLocation.send(.loaded(data: Constants.coordinates[currentCoordinateIndex]))
+        _currentLocation.send(.loaded(coordinate: Constants.coordinates[currentCoordinateIndex]))
     }
 
     func stop() {
@@ -61,9 +62,9 @@ private extension DemoLocationService {
             (54.797277, 9.491039),
             (52.426412, 10.821392),
             (53.542788, 8.613462),
-            (53.141598, 8.242565)
+            (53.141598, 8.242565),
         ]
-            .map(Coordinate.init)
+        .map(Coordinate.init)
 
         static let delay = Duration.seconds(10)
     }

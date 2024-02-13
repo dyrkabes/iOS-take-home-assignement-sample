@@ -1,5 +1,5 @@
 //
-//  WeatherDataConverter.swift
+//  WeatherConverter.swift
 //  WeatherCat
 //
 //  Created by Pavel Stepanov on 13.01.24.
